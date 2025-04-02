@@ -17,9 +17,6 @@ public class CarModel {
     @JoinColumn(name = "car_brand_id")
     private CarBrand carBrand;
 
-    @OneToMany(mappedBy = "carModel", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CarVariant> carVariants = new ArrayList<>();
-
     public Integer getId() {
         return id;
     }
@@ -44,11 +41,4 @@ public class CarModel {
         this.carBrand = carBrand;
     }
 
-    public List<CarVariant> getVariants() {
-        return carVariants;
-    }
-
-    public void setVariants(List<CarVariant> carVariants) {
-        this.carVariants = carVariants;
-    }
 }

@@ -12,11 +12,11 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "*")
-public class CarController {
+public class ModelController {
 
     private final ModelRepository modelRepository;
 
-    public CarController(BrandRepository brandRepository, ModelRepository modelRepository) {
+    public ModelController(BrandRepository brandRepository, ModelRepository modelRepository) {
         this.modelRepository = modelRepository;
     }
 
@@ -29,7 +29,7 @@ public class CarController {
                     .map(CarModel::getName)
                     .collect(Collectors.toList());
         } catch (IllegalArgumentException e) {
-            System.out.println("Vigane CarCode: " + brandCode);
+            System.out.println("Vigane margikood" + brandCode);
             return List.of();
         }
     }

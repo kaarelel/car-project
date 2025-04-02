@@ -14,8 +14,14 @@ spring:
     enabled: true
     baseline-on-migrate: true
     locations: classpath:db/migration
+  security:
+    user:
+      name: none
+      password: none
 
 server:
   servlet:
     session:
       timeout: 2m
+
+spring.autoconfigure.exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
