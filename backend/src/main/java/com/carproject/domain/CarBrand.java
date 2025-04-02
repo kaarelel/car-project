@@ -1,27 +1,26 @@
 package com.carproject.domain;
 
-import ch.qos.logback.core.model.Model;
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Brand {
+public class CarBrand {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String name;
 
-    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Model> models = new ArrayList<>();
+    @OneToMany(mappedBy = "carBrand", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CarModel> carModels = new ArrayList<>();
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -33,11 +32,11 @@ public class Brand {
         this.name = name;
     }
 
-    public List<Model> getModels() {
-        return models;
+    public List<CarModel> getModels() {
+        return carModels;
     }
 
-    public void setModels(List<Model> models) {
-        this.models = models;
+    public void setModels(List<CarModel> carModels) {
+        this.carModels = carModels;
     }
 }

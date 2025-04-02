@@ -3,23 +3,23 @@ package com.carproject.domain;
 import jakarta.persistence.*;
 
 @Entity
-public class Variant {
+public class CarVariant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "model_id")
-    private Model model;
+    @JoinColumn(name = "car_model_id")
+    private CarModel carModel;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -31,11 +31,11 @@ public class Variant {
         this.name = name;
     }
 
-    public Model getModel() {
-        return model;
+    public CarModel getModel() {
+        return carModel;
     }
 
-    public void setModel(Model model) {
-        this.model = model;
+    public void setModel(CarModel carModel) {
+        this.carModel = carModel;
     }
 }

@@ -1,7 +1,7 @@
 package com.carproject.repo;
 
-import com.carproject.domain.Model;
+import com.carproject.domain.CarModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ModelRepository extends JpaRepository<Model, Long> {
+public interface ModelRepository extends JpaRepository<CarModel, Long> {
 }
