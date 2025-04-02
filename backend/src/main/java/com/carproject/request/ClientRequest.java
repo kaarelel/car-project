@@ -1,10 +1,24 @@
 package com.carproject.request;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+
 public class ClientRequest {
+
+    @NotBlank(message = "Nimi on kohustuslik")
+    @Pattern(regexp = "^[a-zA-ZäöüõÄÖÜÕ\\s]+$", message = "Nimi võib sisaldada ainult tähti ja tühikuid")
     private String fullName;
+
+    @NotBlank(message = "Telefoninumber on kohustuslik")
+    @Pattern(regexp = "^\\d+$", message = "Telefoninumber võib sisaldada ainult numbreid")
     private String phoneNumber;
+
+    @NotBlank(message = "Automark on kohustuslik")
     private String selectedBrand;
+
+    @NotBlank(message = "Automudel on kohustuslik")
     private String selectedModel;
+
     private boolean hasDriverLicense;
 
     public String getFullName() {
