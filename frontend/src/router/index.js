@@ -1,28 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import CarForm from '@/views/CarForm.vue'
-import LoginView from '@/views/LoginView.vue'
-import AdminPanel from '@/views/AdminPanel.vue'
+import ClientForm from "@/views/ClientForm.vue";
+import AdminDashboard from "@/views/AdminDashboard.vue";
 
 const routes = [
     {
         path: '/',
-        redirect: '/login'
-    },
-    {
-        path: '/login',
-        name: 'LoginView',
-        component: LoginView
-    },
-    {
-        path: '/form',
-        name: 'CarForm',
-        component: CarForm
+        name: 'ClientForm',
+        component: ClientForm
     },
     {
         path: '/admin',
-        name: 'AdminPanel',
-        component: AdminPanel
-    },
+        name: 'AdminDashboard',
+        component: AdminDashboard
+    }
 ]
 
 const router = createRouter({
