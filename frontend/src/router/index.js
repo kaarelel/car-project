@@ -1,11 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import CarForm from '@/views/CarForm.vue'
+import ClientForm from "@/views/ClientForm.vue";
+import AdminDashboard from "@/views/AdminDashboard.vue";
 
 const routes = [
     {
         path: '/',
-        name: 'CarForm',
-        component: CarForm
+        name: 'ClientForm',
+        component: ClientForm
+    },
+    {
+        path: '/admin',
+        name: 'AdminDashboard',
+        component: AdminDashboard
     }
 ]
 
