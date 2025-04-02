@@ -3,19 +3,21 @@ package com.carproject.controller;
 import com.carproject.domain.ClientSubmission;
 import com.carproject.repo.ClientRepository;
 import com.carproject.request.ClientRequest;
-import org.springframework.context.support.DefaultMessageSourceResolvable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.*;
+import com.carproject.logging.AuditLogger;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api")
 public class ClientController {
+
+    private static final Logger log = LoggerFactory.getLogger(ClientController.class);
 
     private final ClientRepository clientRepository;
 
@@ -33,8 +35,16 @@ public class ClientController {
         submission.setHasDriverLicense(request.isHasDriverLicense());
 
         ClientSubmission saved = clientRepository.save(submission);
-
         httpRequest.getSession().setAttribute("submissionId", saved.getId());
+
+        AuditLogger.log("New submission saved: " +
+                "Name=" + request.getFullName() +
+                ", Phone=" + request.getPhoneNumber() +
+                ", Brand=" + request.getSelectedBrand() +
+                ", Model=" + request.getSelectedModel() +
+                ", License=" + request.isHasDriverLicense());
+
+        log.info("Client info saved, ID={}", saved.getId());
 
         return ResponseEntity.ok(saved.getId());
     }
@@ -47,8 +57,8 @@ public class ClientController {
     }
 
     @GetMapping("/my-submission")
-    public ResponseEntity<ClientSubmission> getMySubmission(HttpServletRequest request) {
-        Object submissionId = request.getSession().getAttribute("submissionId");
+    public ResponseEntity<ClientSubmission> getMySubmission(HttpServletRequest httpRequest) {
+        Object submissionId = httpRequest.getSession().getAttribute("submissionId");
 
         if (submissionId instanceof Integer id) {
             return clientRepository.findById(id)
@@ -63,25 +73,4 @@ public class ClientController {
     public List<ClientSubmission> getAllSubmissions() {
         return clientRepository.findAll();
     }
-
-    @RestControllerAdvice
-    public static class ValidationExceptionHandler {
-
-        @ExceptionHandler(MethodArgumentNotValidException.class)
-        public ResponseEntity<List<String>> handleValidation(MethodArgumentNotValidException ex) {
-            List<String> errors = ex.getBindingResult()
-                    .getFieldErrors()
-                    .stream()
-                    .map(DefaultMessageSourceResolvable::getDefaultMessage)
-                    .toList();
-            return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-        }
-    }
-
-    @PostMapping("/reset")
-    public ResponseEntity<Void> resetSession(HttpServletRequest request) {
-        request.getSession().invalidate();
-        return ResponseEntity.ok().build();
-    }
-
 }
