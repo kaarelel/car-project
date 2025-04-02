@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import ClientForm from "@/views/ClientForm.vue";
-import AdminDashboard from "@/views/AdminDashboard.vue";
+import ClientForm from '@/views/ClientForm.vue'
+import AdminDashboard from '@/views/AdminDashboard.vue'
 
 const routes = [
     {

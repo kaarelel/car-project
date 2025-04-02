@@ -25,6 +25,7 @@ public class BrandController {
                         brand.getCode().name(),
                         brand.getName() != null ? brand.getName() : brand.getCode().name()
                 ))
+                .sorted((a, b) -> a.name().compareToIgnoreCase(b.name()))
                 .toList();
     }
 }

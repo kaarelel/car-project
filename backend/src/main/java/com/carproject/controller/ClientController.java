@@ -21,7 +21,7 @@ public class ClientController {
 
     private final ClientRepository clientRepository;
 
-    public ClientController(ClientRepository clientRepository) {
+    public ClientController(ClientRepository clientRepository, AuditLogger auditLogger) {
         this.clientRepository = clientRepository;
     }
 
@@ -73,4 +73,11 @@ public class ClientController {
     public List<ClientSubmission> getAllSubmissions() {
         return clientRepository.findAll();
     }
+
+    @PostMapping("/reset")
+    public ResponseEntity<Void> resetSession(HttpServletRequest request) {
+        request.getSession().invalidate();
+        return ResponseEntity.ok().build();
+    }
+
 }
