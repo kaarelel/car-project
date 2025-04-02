@@ -36,11 +36,11 @@ public class CarModel {
         this.name = name;
     }
 
-    public CarBrand getBrand() {
+    public CarBrand getCarBrand() {
         return carBrand;
     }
 
-    public void setBrand(CarBrand carBrand) {
+    public void setCarBrand(CarBrand carBrand) {
         this.carBrand = carBrand;
     }
 

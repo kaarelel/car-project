@@ -1,5 +1,6 @@
 package com.carproject.domain;
 
+import com.carproject.domain.enums.CarCode;
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,9 @@ public class CarBrand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, unique = true)
+    private CarCode code;
 
     private String name;
 
@@ -38,5 +42,13 @@ public class CarBrand {
 
     public void setModels(List<CarModel> carModels) {
         this.carModels = carModels;
+    }
+
+    public CarCode getCode() {
+        return code;
+    }
+
+    public void setCode(CarCode code) {
+        this.code = code;
     }
 }
