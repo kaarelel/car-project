@@ -13,6 +13,7 @@ public class ClientSubmission {
     private String phoneNumber;
     private String selectedBrand;
     private String selectedModel;
+    private boolean hasDriverLicense;
 
     public Integer getId() {
         return id;
@@ -52,5 +53,13 @@ public class ClientSubmission {
 
     public void setSelectedModel(String selectedModel) {
         this.selectedModel = selectedModel;
+    }
+
+    public boolean isHasDriverLicense() {
+        return hasDriverLicense;
+    }
+
+    public void setHasDriverLicense(boolean hasDriverLicense) {
+        this.hasDriverLicense = hasDriverLicense;
     }
 }

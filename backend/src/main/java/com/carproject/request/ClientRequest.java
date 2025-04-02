@@ -5,6 +5,7 @@ public class ClientRequest {
     private String phoneNumber;
     private String selectedBrand;
     private String selectedModel;
+    private boolean hasDriverLicense;
 
     public String getFullName() {
         return fullName;
@@ -36,5 +37,13 @@ public class ClientRequest {
 
     public void setSelectedModel(String selectedModel) {
         this.selectedModel = selectedModel;
+    }
+
+    public boolean isHasDriverLicense() {
+        return hasDriverLicense;
+    }
+
+    public void setHasDriverLicense(boolean hasDriverLicense) {
+        this.hasDriverLicense = hasDriverLicense;
     }
 }
