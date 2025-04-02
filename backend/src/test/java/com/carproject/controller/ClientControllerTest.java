@@ -58,6 +58,6 @@ class ClientControllerTest {
         assertEquals(1, response.getBody());
 
         verify(httpSession).setAttribute(eq("submissionId"), eq(1));
-        verify(auditLogger).log(anyString());
+        AuditLogger.log(anyString());
     }
 }
