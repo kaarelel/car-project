@@ -13,11 +13,6 @@ services:
       - "5432:5432"
     volumes:
       - car_data:/var/lib/postgresql/data
-    healthcheck:
-      test: [ "CMD-SHELL", "pg_is_ready -U car_user" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
 
   backend:
     build: ./backend
