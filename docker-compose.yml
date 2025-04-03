@@ -1,18 +1,21 @@
-version: '3.8'
-
 services:
   postgres:
     image: postgres:15
     container_name: car_db
     restart: always
     environment:
+      POSTGRES_DB: car_db
       POSTGRES_USER: car_user
       POSTGRES_PASSWORD: car_pass
-      POSTGRES_DB: car_db
     ports:
       - "5432:5432"
     volumes:
       - car_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U car_user"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   backend:
     build: ./backend

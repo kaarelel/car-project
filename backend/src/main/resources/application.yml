@@ -1,6 +1,7 @@
 spring:
   datasource:
-    url: jdbc:postgresql://postgres:5432/car_db
+    #url: jdbc:postgresql://car_db:5432/car_db For Docker
+    url: jdbc:postgresql://localhost:5432/car_db
     username: car_user
     password: car_pass
   jpa:
@@ -37,6 +38,5 @@ management:
   endpoint:
     health:
       show-details: always
-
 
 spring.autoconfigure.exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
