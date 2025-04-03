@@ -17,7 +17,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://car-backend:8080',
+        target: 'http://car-backend:8080', //'http://localhost:8080' For localhost
         changeOrigin: true,
         secure: false
       }

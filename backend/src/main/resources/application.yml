@@ -1,7 +1,7 @@
 spring:
   datasource:
     url: jdbc:postgresql://car_db:5432/car_db
-    #url: jdbc:postgresql://localhost:5432/car_db
+    #url: jdbc:postgresql://localhost:5432/car_db #For localhost
     username: car_user
     password: car_pass
   jpa:
