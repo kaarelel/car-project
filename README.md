@@ -21,6 +21,10 @@ Täislahendus kasutaja kontaktandmete ja automargi valiku salvestamiseks. Rakend
 - Kuvab kõik esitatud soovid tabelis
 
 ## Käivitus
+**NB**: 
+- Lokaalselt run-ides peab application.yml failis olema 'jdbc:postgresql://localhost:5432/car_db' ja vite.config.js-is on target: 'http://localhost:8080'
+- Dockeris vite.config.js failis target on: 'http://car-backend:8080' ja application.yml-is 'jdbc:postgresql://car-db:5432/car_db'
+
 1. Kui lokaalselt soovitakse käivitada, siis peab olemas olema:
    - [Node.js](https://nodejs.org/) 
    - npm install
