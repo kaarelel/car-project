@@ -1,25 +1,39 @@
+version: "3.8"
+
 services:
   postgres:
     image: postgres:15
     container_name: car_db
     restart: always
     environment:
-      POSTGRES_DB: car_db
       POSTGRES_USER: car_user
       POSTGRES_PASSWORD: car_pass
+      POSTGRES_DB: car_db
     ports:
       - "5432:5432"
     volumes:
       - car_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U car_user"]
+      test: ["CMD-SHELL", "pg_isready -U car_user -d car_db"]
       interval: 10s
       timeout: 5s
       retries: 5
 
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: car_pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+
   backend:
     build: ./backend
-    container_name: car_backend
+    container_name: car-backend
     ports:
       - "8080:8080"
     depends_on:
@@ -33,18 +47,6 @@ services:
       - "5173:5173"
     depends_on:
       - backend
-
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: car_pgadmin
-    restart: always
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: admin
-    ports:
-      - "5050:80"
-    depends_on:
-      - postgres
 
 volumes:
   car_data:
