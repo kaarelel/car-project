@@ -7,10 +7,28 @@ Täislahendus kasutaja kontaktandmete ja automargi valiku salvestamiseks. Rakend
 - PostgreSQL andmebaasist (Flyway migratsioonid)
 - Docker Compose
 
+## Kiire kasutusjuhend
+
+- Tavakasutaja
+- Avab avalehe
+- Sisestab nime, telefoni, valib automargi ja mudeli
+- Kui valik puudub, saab "Muu" kaudu sisestada soovitud nime
+- Salvestamisel andmed talletatakse ja sessioon jäetakse meelde
+- Kasutaja saab sama sessiooni jooksul andmeid muuta
+
+- Administraator
+- Admin liides: http://localhost:5173/admin
+- Kuvab kõik esitatud soovid tabelis
+
 ## Käivitus
 1. Kui lokaalselt soovitakse käivitada, siis peab olemas olema:
    - [Node.js](https://nodejs.org/) 
+   - npm install
+   - npm run dev
+   - http://localhost:5173 ja päringute kuvamiseks - http://localhost:5173/admin
    - [Java 21](https://adoptium.net/) 
+   - ./gradlew bootRun või BackendApplication - run
+   - docker compose up --build
   
 2. Kui Dockeriga soovitakse käivitada, siis peab olema:
    - [Docker](https://www.docker.com/)
